@@ -12,6 +12,7 @@ RUN apt-get update -y && \
     apt-get clean && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
+RUN npm install -g grunt-cli
     
 VOLUME ["/etc/gitlab-runner", "/home/gitlab-runner"]
 ENTRYPOINT ["/usr/bin/dumb-init", "gitlab-ci-multi-runner"]
