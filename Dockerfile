@@ -1,4 +1,4 @@
-FROM node
+FROM node:slim
 
 ADD https://github.com/Yelp/dumb-init/releases/download/v1.0.2/dumb-init_1.0.2_amd64 /usr/bin/dumb-init
 RUN chmod +x /usr/bin/dumb-init
@@ -19,13 +19,11 @@ RUN apt-get install \
       apt-transport-https \
       ca-certificates \
       gnupg2 \
-      software-properties-common && |
+      software-properties-common && \
     curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
     apt-key fingerprint 0EBFCD88 && \
     add-apt-repository \
-      "deb [arch=amd64] https://download.docker.com/linux/debian \
-      $(lsb_release -cs) \
-      stable" && \
+      "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable" && \
     apt-get update && \
     apt-get install docker-ce
     
