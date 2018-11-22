@@ -27,5 +27,5 @@ RUN apt-get install \
     apt-get install docker-ce
     
 VOLUME ["/etc/gitlab-runner", "/home/gitlab-runner"]
-ENTRYPOINT ["/usr/bin/dumb-init", "gitlab-ci-multi-runner"]
+ENTRYPOINT ["/usr/bin/dumb-init", "gitlab-runner"]
 CMD ["run", "--user=root", "--working-directory=/home/gitlab-runner"]
