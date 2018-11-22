@@ -10,9 +10,19 @@ RUN apt-get update -y && \
     apt-get upgrade -y && \
     apt-get install -y gitlab-ci-multi-runner && \
     apt-get clean && \
-    apt-get autoremove -y && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get autoremove -y
+
 RUN npm install -g grunt-cli
+
+# Install docker
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
+    apt-get update && \
+    apt-cache policy docker-ce && \
+    apt-get install -y docker-ce && \
+    systemctl status docker && \
+    apt-get clean && \
+    apt-get autoremove -y
     
 VOLUME ["/etc/gitlab-runner", "/home/gitlab-runner"]
 ENTRYPOINT ["/usr/bin/dumb-init", "gitlab-ci-multi-runner"]
