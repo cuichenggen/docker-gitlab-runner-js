@@ -15,9 +15,7 @@ RUN apt-get update -y && \
 RUN npm install -g grunt-cli
 
 # Install docker
-RUN apt-get install \
-      apt-transport-https \
-      ca-certificates \
+RUN apt-get install -y \
       gnupg2 \
       software-properties-common && \
     curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
