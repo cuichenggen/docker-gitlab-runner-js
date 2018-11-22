@@ -22,8 +22,7 @@ RUN apt-get install \
       software-properties-common && \
     curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
     apt-key fingerprint 0EBFCD88 && \
-    add-apt-repository \
-      "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable" && \
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable" && \
     apt-get update && \
     apt-get install docker-ce
     
