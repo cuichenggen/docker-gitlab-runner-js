@@ -22,7 +22,6 @@ RUN apt-get install -y \
     apt-key fingerprint 0EBFCD88 && \
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable" && \
     apt-get update -y && \
-    apt-get upgrade -y && \
     apt-get install -y docker-ce && \
     apt-get clean && \
     apt-get autoremove -y
