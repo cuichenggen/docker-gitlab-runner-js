@@ -21,8 +21,11 @@ RUN apt-get install -y \
     curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
     apt-key fingerprint 0EBFCD88 && \
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable" && \
-    apt-get update && \
-    apt-get install docker-ce
+    apt-get update -y && \
+    apt-get upgrade -y && \
+    apt-get install docker-ce && \
+    apt-get clean && \
+    apt-get autoremove -y
     
 VOLUME ["/etc/gitlab-runner", "/etc/gitlab-runner"]
 ENTRYPOINT ["/usr/bin/dumb-init", "gitlab-runner"]
