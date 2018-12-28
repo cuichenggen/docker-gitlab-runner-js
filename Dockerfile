@@ -14,6 +14,16 @@ RUN apt-get update -y && \
 
 RUN npm install -g grunt-cli
 
+# Install chrome to run grunt test 
+RUN apt-get update -y && \
+    apt-get install libxss1 libappindicator1 libindicator7 -y && \
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+    dpkg -i google-chrome*.deb && \
+    apt-get install -f && \
+    rm -f google-chrome*.deb && \
+    apt-get clean && \
+    apt-get autoremove -y
+
 # Install docker
 RUN apt-get install -y \
       gnupg2 \
