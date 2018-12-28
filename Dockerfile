@@ -15,13 +15,10 @@ RUN apt-get update -y && \
 RUN npm install -g grunt-cli
 
 # Install chrome to run grunt test 
-RUN apt-get update -y && \
-    apt-get install libxss1 libappindicator1 libindicator7 fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatspi2.0-0 libgtk-3-0 libnspr4 libnss3 libx11-xcb1 libxtst6 lsb-release xdg-utils -y && \
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-    mkdir chrome && mv google-chrome-stable_current_amd64.deb chrome &&  cd chrome && \
-    dpkg -i google-chrome*.deb && \
-    apt-get install -f && \
-    cd .. && rm -rf chrome && \
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - && \
+    echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list && \
+    apt-get update -y && \ 
+    apt-get install google-chrome-stable -y && \
     apt-get clean && \
     apt-get autoremove -y
 
