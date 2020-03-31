@@ -12,7 +12,8 @@ RUN apt-get update -y && \
     apt-get clean && \
     apt-get autoremove -y
 
-RUN npm install -g grunt-cli
+RUN npm install -g npm && \
+    npm install -g grunt-cli
 
 # Install chrome to run grunt test 
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
