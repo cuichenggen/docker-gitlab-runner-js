@@ -13,7 +13,10 @@ RUN apt-get update -y && \
     apt-get autoremove -y
 
 RUN npm install -g npm && \
-    npm install -g grunt-cli
+    npm install -g grunt-cli && \
+    npm install  -g cnpm  --registry=https://registry.npm.taobao.org && \
+    sed -i "s/'5s'/'25s'/g" /usr/local/lib/node_modules/cnpm/node_modules/urllib/lib/urllib.js
+
 
 # Install chrome to run grunt test 
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
